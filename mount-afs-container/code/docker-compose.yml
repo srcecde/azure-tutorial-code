@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  afs_service:
+    container_name: afs_service
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    
+    restart: always
+    volumes:
+      - AFSMount:/project/service/afs_app/data
+
+volumes:
+  AFSMount:
+    driver: local
+    driver_opts:
+      type: cifs
+      o: "mfsymlinks,vers=3.0,username=${AFS_NAME},password=${AFS_KEY},addr=${AFS_NAME}.file.core.windows.net"
+      device: "//${AFS_NAME}.file.core.windows.net/${AFS_CONTAINER}"
