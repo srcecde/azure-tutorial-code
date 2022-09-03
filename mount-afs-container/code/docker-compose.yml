@@ -7,7 +7,7 @@ services:
       context: ./
       dockerfile: Dockerfile
     
-    restart: always
+    restart: 'no'
     volumes:
       - AFSMount:/project/service/afs_app/data
 
